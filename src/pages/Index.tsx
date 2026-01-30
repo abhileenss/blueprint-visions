@@ -1,13 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import HeroSection from "@/components/landing/HeroSection";
+import OfferingsSection from "@/components/landing/OfferingsSection";
+import BenefitsSection from "@/components/landing/BenefitsSection";
+import HowItWorksSection from "@/components/landing/HowItWorksSection";
+import FinalCTASection from "@/components/landing/FinalCTASection";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <HeroSection />
+      <OfferingsSection />
+      <BenefitsSection />
+      <HowItWorksSection />
+      <FinalCTASection />
+      
+      {/* Footer */}
+      <footer className="py-8 border-t border-border/30">
+        <div className="container mx-auto px-6 text-center">
+          <p className="font-sans-body text-sm text-muted-foreground">
+            © {new Date().getFullYear()} AI Real Estate Video. Transforming visions into reality.
+          </p>
+        </div>
+      </footer>
+    </main>
   );
 };
 
