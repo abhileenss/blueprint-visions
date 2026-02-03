@@ -62,7 +62,7 @@ const offeringGroups = [
     ]
   },
   {
-    title: "Marketing & Sales Tools",
+    title: "Marketing & Sales Assets",
     subtitle: "Drive Engagement and Leads",
     offerings: [
       { icon: <Smartphone className="w-5 h-5" />, title: "High-Impact Social Snippets", description: "15-30 second videos perfect for Instagram Reels, TikTok, and YouTube Shorts." },
