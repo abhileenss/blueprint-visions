@@ -108,22 +108,6 @@ const HeroSection = () => {
             </Button>
           </motion.div>
         </motion.div>
-        
-        {/* Visual indicator to scroll */}
-        <motion.div
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-        >
-          <motion.div
-            className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <div className="w-1 h-2 rounded-full bg-blueprint" />
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );
