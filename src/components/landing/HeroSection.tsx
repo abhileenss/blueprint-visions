@@ -82,7 +82,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="font-sans-body text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed"
           >
-            We transform your floor plans, brochures, and photos into a complete portfolio of stunning, sales-driving videos. No shoots, no delays, just pure digital magic.
+            We transform your floor plans, brochures, and photos into production-quality videos that feel unmistakably real—not AI-generated gimmicks. No shoots, no delays, just broadcast-ready content that sells.
           </motion.p>
           
           {/* Primary CTA */}
