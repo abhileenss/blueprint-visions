@@ -15,7 +15,7 @@ const benefits: Benefit[] = [
   {
     icon: <DollarSign className="w-8 h-8" />,
     title: "10x More Cost-Effective",
-    description: "No expensive shoots, crews, or equipment. Our AI generates broadcast-quality videos at a fraction of traditional costs—making premium video accessible even for small projects with limited budgets.",
+    description: "Traditional video production—with crews, equipment, and on-location shoots—has always been reserved for large-budget projects. Our AI changes that, delivering broadcast-quality videos at a fraction of the cost and making premium marketing accessible to everyone.",
     stat: "10x",
     statLabel: "Cost Savings"
   },
