@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { TrendingUp, Infinity as InfinityIcon, Zap, Award, ArrowRight } from "lucide-react";
+import { TrendingUp, Infinity as InfinityIcon, Zap, DollarSign, ArrowRight } from "lucide-react";
 import beforeAfterImg from "@/assets/before-after.jpg";
 
 interface Benefit {
@@ -12,6 +12,13 @@ interface Benefit {
 }
 
 const benefits: Benefit[] = [
+  {
+    icon: <DollarSign className="w-8 h-8" />,
+    title: "10x More Cost-Effective",
+    description: "No expensive shoots, crews, or equipment. Our AI generates broadcast-quality videos at a fraction of traditional costs—making premium video accessible even for small projects with limited budgets.",
+    stat: "10x",
+    statLabel: "Cost Savings"
+  },
   {
     icon: <TrendingUp className="w-8 h-8" />,
     title: "Pre-Sell Your Vision",
@@ -32,13 +39,6 @@ const benefits: Benefit[] = [
     description: "Receive a full suite of professional, broadcast-quality videos in days, not months. Launch campaigns faster and dominate the market.",
     stat: "Days",
     statLabel: "Not Months"
-  },
-  {
-    icon: <Award className="w-8 h-8" />,
-    title: "Superior Quality & Impact",
-    description: "Our AI, combined with creative oversight, produces visuals that are more compelling and polished than traditional videography, ensuring your project stands out.",
-    stat: "10x",
-    statLabel: "More Polished"
   }
 ];
 
