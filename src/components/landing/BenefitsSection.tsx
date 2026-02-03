@@ -119,6 +119,18 @@ const BenefitsSection = () => {
           <div className="absolute -inset-3 border border-blueprint/10 rounded-3xl -z-10" />
         </motion.div>
         
+        {/* Why Use AI Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-12"
+        >
+          <h3 className="font-serif-display text-2xl md:text-3xl font-medium text-foreground">
+            Why Use <span className="text-gradient-blue">AI?</span>
+          </h3>
+        </motion.div>
+        
         {/* Benefits grid with stats */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {benefits.map((benefit, index) => (
