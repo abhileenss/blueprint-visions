@@ -70,8 +70,9 @@ const HeroSection = () => {
         >
           {/* Headline */}
           <h1 className="font-serif-display text-5xl md:text-6xl lg:text-7xl font-medium text-foreground mb-8 leading-[1.1] tracking-tight">
-            See Your Vision, Built.{" "}
-            <span className="text-gradient-blue">Instantly.</span>
+            See Your Vision,{" "}
+            <span className="text-gradient-blue">AI-Built.</span>{" "}
+            Instantly.
           </h1>
           
           {/* Sub-headline */}
