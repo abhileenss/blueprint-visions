@@ -26,16 +26,49 @@ const FinalCTASection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Demo Request Submitted",
-      description: "Thank you! Our team will reach out to you shortly to schedule your personalized demo.",
-    });
-    
-    setFormData({ fullName: "", companyEmail: "", phoneNumber: "" });
-    setIsSubmitting(false);
+
+    try {
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-demo-request`;
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          companyEmail: formData.companyEmail,
+          phoneNumber: formData.phoneNumber,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        toast({
+          title: "Demo Request Submitted",
+          description: "Thank you! Our team will reach out to you shortly to schedule your personalized demo.",
+        });
+        setFormData({ fullName: "", companyEmail: "", phoneNumber: "" });
+      } else {
+        toast({
+          title: "Request Received",
+          description: result.message || "We've received your request and will contact you soon.",
+          variant: "default",
+        });
+        setFormData({ fullName: "", companyEmail: "", phoneNumber: "" });
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast({
+        title: "Submission Error",
+        description: "There was an issue submitting your request. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   return (
