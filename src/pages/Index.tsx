@@ -1,4 +1,5 @@
 import HeroSection from "@/components/landing/HeroSection";
+import TeamSection from "@/components/landing/TeamSection";
 import OfferingsSection from "@/components/landing/OfferingsSection";
 import BenefitsSection from "@/components/landing/BenefitsSection";
 import HowItWorksSection from "@/components/landing/HowItWorksSection";
@@ -8,6 +9,7 @@ const Index = () => {
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <HeroSection />
+      <TeamSection />
       <OfferingsSection />
       <BenefitsSection />
       <HowItWorksSection />
