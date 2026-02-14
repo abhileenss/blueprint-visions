@@ -1,7 +1,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import nivedanImage from "@/assets/_M1A1269.JPG";
 import { Sparkles, Users, TrendingUp, Mic, Award } from "lucide-react";
+
+const nivedanImage = "/_M1A1281.JPG";
 
 const TeamSection = () => {
   const sectionRef = useRef(null);
