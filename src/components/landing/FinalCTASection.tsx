@@ -88,8 +88,8 @@ const FinalCTASection = () => {
                 <div className="absolute top-4 right-4 w-16 h-16 border-t-2 border-r-2 border-amber-golden/30 rounded-tr-xl" />
               </div>
 
-              <div className="zcal-inline-widget" data-zcal-options='{"showBackground":1}'>
-                <a href="https://zcal.co/i/zUHkgnG4">30 Minute Meeting - Schedule a meeting</a>
+              <div className="zcal-inline-widget">
+                <a href="https://zcal.co/i/Uy-Pk5N8">AI Real Estate Videos  - Schedule a meeting</a>
               </div>
             </div>
           </motion.div>
