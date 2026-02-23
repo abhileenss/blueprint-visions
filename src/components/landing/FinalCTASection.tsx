@@ -1,75 +1,21 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { toast } from "@/hooks/use-toast";
+import { useRef, useEffect } from "react";
 import heroImage from "@/assets/hero-blueprint-transformation.jpg";
 
 const FinalCTASection = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-  
-  const [formData, setFormData] = useState({
-    fullName: "",
-    companyEmail: "",
-    phoneNumber: ""
-  });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-  
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
 
-    try {
-      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-demo-request`;
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://static.zcal.co/embed/v1/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
 
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          fullName: formData.fullName,
-          companyEmail: formData.companyEmail,
-          phoneNumber: formData.phoneNumber,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (response.ok && result.success) {
-        toast({
-          title: "Demo Request Submitted",
-          description: "Thank you! Our team will reach out to you shortly to schedule your personalized demo.",
-        });
-        setFormData({ fullName: "", companyEmail: "", phoneNumber: "" });
-      } else {
-        toast({
-          title: "Request Received",
-          description: result.message || "We've received your request and will contact you soon.",
-          variant: "default",
-        });
-        setFormData({ fullName: "", companyEmail: "", phoneNumber: "" });
-      }
-    } catch (error) {
-      console.error("Submission error:", error);
-      toast({
-        title: "Submission Error",
-        description: "There was an issue submitting your request. Please try again or contact us directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
   
   return (
     <section 
@@ -102,11 +48,11 @@ const FinalCTASection = () => {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <h2 className="font-serif-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-6 leading-tight">
-              Ready to See the{" "}
-              <span className="text-gradient-amber">Future?</span>
+              Schedule a{" "}
+              <span className="text-gradient-amber">Meeting</span>
             </h2>
             <p className="font-sans-body text-lg text-muted-foreground leading-relaxed mb-8">
-              Schedule a personalized demo to see how our AI can transform your project materials into a powerful sales and marketing engine.
+              Book a 30-minute meeting to discuss how our AI can transform your project materials into a powerful sales and marketing engine.
             </p>
             
             {/* Feature highlights */}
@@ -132,119 +78,20 @@ const FinalCTASection = () => {
             </div>
           </motion.div>
           
-          {/* Right: Form */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <form 
-              onSubmit={handleSubmit}
-              className="relative bg-card/80 backdrop-blur-md rounded-2xl p-8 md:p-10 border border-border/50 shadow-card"
-            >
-              {/* Decorative corner */}
+            <div className="relative bg-card/80 backdrop-blur-md rounded-2xl p-8 md:p-10 border border-border/50 shadow-card">
               <div className="absolute top-0 right-0 w-32 h-32 overflow-hidden rounded-tr-2xl">
                 <div className="absolute top-4 right-4 w-16 h-16 border-t-2 border-r-2 border-amber-golden/30 rounded-tr-xl" />
               </div>
-              
-              <div className="space-y-6">
-                {/* Full Name */}
-                <div className="space-y-2">
-                  <Label 
-                    htmlFor="fullName" 
-                    className="font-sans-body text-sm font-medium text-foreground"
-                  >
-                    Full Name
-                  </Label>
-                  <Input
-                    id="fullName"
-                    name="fullName"
-                    type="text"
-                    placeholder="John Smith"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    required
-                    className="h-12 bg-background/50 border-border/70 text-foreground placeholder:text-muted-foreground/50 focus:border-amber-golden focus:ring-amber-golden/20"
-                  />
-                </div>
-                
-                {/* Company Email */}
-                <div className="space-y-2">
-                  <Label 
-                    htmlFor="companyEmail" 
-                    className="font-sans-body text-sm font-medium text-foreground"
-                  >
-                    Company Email
-                  </Label>
-                  <Input
-                    id="companyEmail"
-                    name="companyEmail"
-                    type="email"
-                    placeholder="john@yourcompany.com"
-                    value={formData.companyEmail}
-                    onChange={handleChange}
-                    required
-                    className="h-12 bg-background/50 border-border/70 text-foreground placeholder:text-muted-foreground/50 focus:border-amber-golden focus:ring-amber-golden/20"
-                  />
-                  <p className="text-xs text-muted-foreground/70">
-                    Please use your business email address
-                  </p>
-                </div>
-                
-                {/* Phone Number */}
-                <div className="space-y-2">
-                  <Label 
-                    htmlFor="phoneNumber" 
-                    className="font-sans-body text-sm font-medium text-foreground"
-                  >
-                    Phone Number
-                  </Label>
-                  <Input
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    type="tel"
-                    placeholder="+1 (555) 000-0000"
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                    required
-                    className="h-12 bg-background/50 border-border/70 text-foreground placeholder:text-muted-foreground/50 focus:border-amber-golden focus:ring-amber-golden/20"
-                  />
-                </div>
-                
-                {/* Submit Button */}
-                <motion.div
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.99 }}
-                  className="pt-4"
-                >
-                  <Button
-                    type="submit"
-                    variant="cta"
-                    size="lg"
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <span className="flex items-center gap-2">
-                        <motion.span
-                          className="w-4 h-4 border-2 border-current border-t-transparent rounded-full"
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        />
-                        Submitting...
-                      </span>
-                    ) : (
-                      "Request a Demo"
-                    )}
-                  </Button>
-                </motion.div>
+
+              <div className="zcal-inline-widget">
+                <a href="https://zcal.co/i/zUHkgnG4">30 Minute Meeting - Schedule a meeting</a>
               </div>
-            </form>
-            
-            {/* Trust signal */}
-            <p className="text-center text-xs text-muted-foreground/60 mt-6">
-              Your information is secure and will never be shared with third parties.
-            </p>
+            </div>
           </motion.div>
         </div>
       </div>
